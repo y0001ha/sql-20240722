@@ -107,7 +107,7 @@
     ]
 - 권한 [role 
     VARCHAR(6) NOT NULL 
-    DEFAULT 'HOME'
+    DEFAULT 'NORMAL'
     ]
 - 이메일 관계 [user_email_fk 
    FOREIGN KEY (email) 
