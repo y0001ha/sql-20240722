@@ -40,7 +40,7 @@
 - 각 페이지당 10개의 게시물 리스트 출력
  
  상세보기
-- 제목, 작성자,작성일,조회수, 내용을 출력
+- 제목, 작성자, 작성일, 조회수, 내용을 출력
 - 관리자일 경우 답글을 작성할 수 있음
 - 답글은 내용만 입력
 - 만약 게시물에 답글이 있을 경우 답글도 출력
@@ -117,7 +117,7 @@
 >> 게시물 [board]
 - 접수번호 [receipt_number INT PRIMARY KEY AUTO_INCREMENT]
 - 제목 [title VARCHAR(50) NOT NULL]
-- 상태 [status BOOLEAN NOT NULL]
+- 상태 [status BOOLEAN NOT NULL DEFAULT false]
 - 작성자 [writer_id VARCHAR(20) NOT NULL]
 - 작성일 [write_date DATE NOT NULL DEFAULT now()]
 - 조회수 [view_count INT NOT NULL DEFAULT 0]
@@ -128,8 +128,18 @@
    REFERENCES user(id)
    ]
 
-
-
+==기능==
+-- 로그인 (아이디, 비밀번호)
+-- 아이디 중복확인 (아이디)
+-- 이메일 인증번호 전송 (이메일)
+-- 이메일 인증확인 (이메일, 인증번호)
+-- 회원가입 (아이디, 비밀번호, 이메일)
+-- 게시물 리스트 (페이지번호, 검색어(제목)) 
+    => (접수번호, 상태, 제목, 작성자, 작성일, 조회수) (~10개)
+-- 게시물 작성 (제목, 내용, 작성자 아이디)
+-- 게시물 상세보기 (접수번호) 
+    => (제목, 작성자, 작성일, 조회수, 내용, 답글)
+-- 답글 작성 (내용, 접수번호)
 
 
 

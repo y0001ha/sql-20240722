@@ -32,6 +32,32 @@ CREATE TABLE board (
     CONSTRAINT writer_fk FOREIGN KEY (writer_id) REFERENCES user(id)
 );
 
+-- 로그인
+SELECT * FROM user WHERE 'qwer2134' = 'qwer1234';
+-- SELECT * FROM user WHERE id = :id AND password = :password;
+-- password는 암호화되어서 위처럼 쓰면 오류남 
+
+-- 아이디 중복확인 
+SELECT * FROM user WHERE id = 'qwer1234';
+
+-- 이메일 인증
+INSERT INTO email_auth VALUES ('qwer1234@qwer.com', '0123');
+
+-- 이메일 인증확인 
+SELECT * FROM email_auth 
+WHERE email = 'qwer1234@qwer.com' AND auth_number = '0123';
+
+-- 회원가입
+INSERT INTO user(id, password, email) VALUES ('qwer1234', 'qwer1234', 'qwer1234@qwer.com');
+
+-- 게시물 리스트
+SELECT receipt_number, status, title, writer_id, write_date, view_count FROM board
+WHERE title LIKE '%:title%'
+ORDER BY receipt_number DESC
+LIMIT 10;
+
+
+
 
 
 
