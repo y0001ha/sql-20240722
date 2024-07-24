@@ -5,7 +5,7 @@ USE officetel;
 
 -- 이메일 인증 테이블
 CREATE TABLE email_auth (
-	email VARCHAR(100) PRIMARY KEY CHECK(email REGEXP '^[a-zA-z0-9]*@([-.]?[a-zA-z0-9]*\.[a-zA-Z]{2,4}$'),
+    email VARCHAR(100) PRIMARY KEY CHECK(email REGEXP '^[a-zA-Z0-9]*@([-.]?[a-zA-Z0-9])*\.[a-zA-Z]{2,4}$'),
     auth_number VARCHAR(4) NOT NULL CHECK(auth_number REGEXP '^[0-9]{4}$')
 );
 
@@ -16,7 +16,7 @@ CREATE TABLE user (
     email VARCHAR(100) NOT NULL UNIQUE,
     join_path VARCHAR(5) NOT NULL DEFAULT 'HOME',
     role VARCHAR(6) NOT NULL DEFAULT 'NORMAL',
-    CONSTRAINT user_email_fk FOREIGN KEY(email) REFERENCES email_auth(email)
+	CONSTRAINT user_email_fk FOREIGN KEY (email) REFERENCES email_auth (email)
 );
 
 -- 게시물 테이블
@@ -29,7 +29,7 @@ CREATE TABLE board (
     view_count INT NOT NULL DEFAULT 0,
     contents VARCHAR(1000) NOT NULL,
     reply TEXT,
-    CONSTRAINT writer_fk FOREIGN KEY (writer_id) REFERENCES user(id)
+    CONSTRAINT writer_fk FOREIGN KEY (writer_id) REFERENCES user (id)
 );
 
 -- 로그인
