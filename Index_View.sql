@@ -33,14 +33,24 @@ SELECT
 	D.name '부서명',
 	D.tel_number '부서전화번호'
 FROM employee E LEFT JOIN department D
-ON E.department_code = D.department_code;
+ON E.department_code = D.department_code
+ORDER BY '부서명';
 
 SELECT * FROM employee_view;
+-- VIEW는 물리적으로 데이터가 저장되는 것이 아니기 때문에 INSERT, UPDATE, DELETE 및 INDEX 생성이 불가능
 
+-- VIEW 수정 
+-- ALTER VIEW 뷰이름 AS SELECT ... 
+ALTER VIEW employee_view AS
+SELECT
+	E.employ_number '사번',
+	E.name '사원이름',
+	D.name '부서명',
+	D.tel_number '부서전화번호'
+FROM employee E LEFT JOIN department D
+ON E.department_code = D.department_code
+ORDER BY '부서명';
 
-
-
-
-
-
-
+-- VIEW 삭제
+-- DROP VIEW 뷰이름 
+DROP VIEW employee_view;
