@@ -51,15 +51,90 @@ FROM department dpt; -- 테이블에서 별칭 대문자 많이 씀
 
 -- INNER JOIN : 두 테이블에서 조건이 일치하는 레코드만 반환 
 -- SELECT column, ... FROM 기준테이블 INNER JOIN 조합할테이블 ON 조인조건 
-SELECT *
+SELECT 
+	E.employ_number '사번',
+	E.name '사원이름',
+	E.age '나이',
+	E.department_code '부서코드',
+    D.name '부서명',
+    D. tel_number '부서전화번호'
 FROM employee E INNER JOIN department D
 ON E.department_code = D.department_code;
 
+-- LEFT OUTER JOIN (LEFT JOIN) : 기준 테이블의 모든 레코드와 조합할 테이블 중 조건에 일치하는 레코드만 반환
+-- 만약에 조합할 테이블에 조건에 일치하는 레코드가 존재하지 않으면 null로 표현 
+SELECT 
+	E.employ_number '사번',
+	E.name '사원이름',
+	E.age '나이',
+	E.department_code '부서코드',
+    D.name '부서명',
+    D. tel_number '부서전화번호'
+FROM employee E LEFT JOIN department D
+ON E.department_code = D.department_code;
 
+-- RIGHT OUTER JOIN (RIGHT JOIN) : 조합할 테이블의 모든 레코드와 기준 테이블 중 조건에 일치하는 레코드만 반환
+-- 만약 기준 테이블에 조건에 일치하는 레코드가 존재하지 않으면 null로 반환
+SELECT 
+	E.employ_number '사번',
+	E.name '사원이름',
+	E.age '나이',
+	D.department_code '부서코드',
+    D.name '부서명',
+    D. tel_number '부서전화번호'
+FROM employee E RIGHT JOIN department D
+ON E.department_code = D.department_code;
 
-				
+-- FULL OUTER JOIN (FULL JOIN) : 기준 테이블의 모든 레코드와 조합할 테이블의 모든 레코드를 반환 
+-- 만약 기준 테이블 혹은 조합할 테이블에 조건에 일치하는 레코드가 존재하지 않으면 null로 반환
+-- MYSQL에서는 FULL OUTER JOIN을 문법상 제공하지 않음
+-- FULL JOIN = LEFT JOIN + RIGHT JOIN
+SELECT 
+	E.employ_number '사번',
+	E.name '사원이름',
+	E.age '나이',
+	E.department_code '부서코드',
+    D.name '부서명',
+    D. tel_number '부서전화번호'
+FROM employee E LEFT JOIN department D
+ON E.department_code = D.department_code
+UNION 
+SELECT 
+	E.employ_number '사번',
+	E.name '사원이름',
+	E.age '나이',
+	D.department_code '부서코드',
+    D.name '부서명',
+    D. tel_number '부서전화번호'
+FROM employee E RIGHT JOIN department D
+ON E.department_code = D.department_code;
 
+-- CROSS JOIN : 기준 테이블의 각 레코드를 조합할 테이블의 모든 레코드에 조합하여 반환 
+-- CROSS JOIN 결과 레코드 수 = 기분 테이블 레코드 수 * 조합할 테이블 레코드 수 
+SELECT *
+FROM employee E CROSS JOIN department D;
+-- MUSQL에서 기본 조인이 CROSS JOIN 형태임
+SELECT *
+FROM employee E JOIN department D;
+SELECT *
+FROM employee E , department D;
 
+-- 부서코드가 A 인 사원에 대해 사번, 이름, 부서명을 조회하시오. 
+SELECT 
+	E.employ_number '사번', 
+    E.name '이름', 
+    D.name '부서명'
+FROM employee E INNER JOIN department D
+ON E.department_code = D.department_code
+WHERE E.department_code = 'A';
 
+-- 부서명이 '영업부' 인 사원에 대해 사번, 이름, 나이를 조회하시오.
+SELECT
+	E.employ_number '사번', 
+    E.name '이름', 
+    E.age '나이'
+FROM employee E INNER JOIN department D
+ON E.department_code = D.department_code
+WHERE D.name = '영업부';
 
 
