@@ -34,7 +34,7 @@ SELECT 사번, 사원이름, IFNULL(부서명, '없음') FROM employee_view;
 -- 문자열 함수 : 문자열 조작을 도와주는 함수들 
 
 -- LENGTH(문자열) : 문자열의 바이트수를 반환 
-SELECT LENGTH(name) / 3 FROM employee;customer_management
+SELECT LENGTH(name) / 3 FROM employee;
 
 -- CONCAT (문자열, ...) : 매개변수로 전달받은 문자열들을 결합
 -- 매개변수 중 하나라도 null이면 null을 반환
