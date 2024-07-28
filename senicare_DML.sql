@@ -147,7 +147,7 @@ UPDATE goods SET count = count - 2 WHERE goods_number = 1;
 -- 고객 테이블에서 특정 고객에 대한 레코드(고객 사진, 고객 이름, 생년월일, 담당자, 주소)를 수정 
 -- 필요 추가 데이터 : 고객 번호(화면에서)
 
--- 수정을 하려고 하는 레코드가 존재하는지 확인. 
+-- 수정을 하려고 하는 레코드가 존재하는지 확인
 SELECT * FROM customer WHERE customer_number = 1;
 -- 레코드 수정시 담당자 관계 확인
 SELECT * FROM nurse WHERE id = 'qwer1234';
